@@ -29,3 +29,23 @@ The dynamic array is built with three main components:
  * Add/remove at end: Amortized O(1)
  * Insert/erase in middle: O(n)
  * Memory overhead: Less than 2x the space needed for elements
+## Example Usage
+cpp
+// Create with initial capacity
+DynamicArray* da = createDynamicArray(2);
+
+// Add elements
+pushBack(da, 10);
+pushBack(da, 20);
+pushBack(da, 30);  // Will trigger resize
+
+// Access elements
+int value;
+at(da, 1, &value);  // value = 20
+
+// Insert and remove
+insert(da, 1, 15);  // [10, 15, 20, 30]
+erase(da, 2);       // [10, 15, 30]
+
+// Clean up
+freeDynamicArray(da);
