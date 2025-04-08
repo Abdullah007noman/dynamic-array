@@ -30,7 +30,7 @@ The dynamic array is built with three main components:
  * Insert/erase in middle: O(n)
  * Memory overhead: Less than 2x the space needed for elements
 ## Example Usage
-cpp
+``` cpp
 // Create with initial capacity
 DynamicArray* da = createDynamicArray(2);
 
@@ -49,3 +49,4 @@ erase(da, 2);       // [10, 15, 30]
 
 // Clean up
 freeDynamicArray(da);
+```
