@@ -50,3 +50,37 @@ erase(da, 2);       // [10, 15, 30]
 // Clean up
 freeDynamicArray(da);
 ```
+# Dynamic Table
+
+
+## a) Using the Aggregate Method
+The aggregate method computes the amortized cost by dividing the total cost of a sequence of operations by the number of operations.
+For a dynamic table with n insertions:
+
+When the table doubles in size, we need to copy all existing elements
+Doubling happens when the table size is 1, 2, 4, 8, ..., 2^k where k = ⌊log n⌋
+
+For n insertions, the total cost is:
+
+ * Basic insertion cost: n operations × O(1) = O(n)
+ * Resizing cost: copying elements when doubling
+   * 1 + 2 + 4 + 8 + ... + 2^k = 2^(k+1) - 1 < 2n
+
+Therefore, the total cost is O(n), and the amortized cost per operation is O(n)/n = O(1).
+## b) Using the Accounting Method
+In the accounting method, we charge each operation a certain amount (the amortized cost) that may be higher than its actual cost. The excess payment is stored as "credit" that can be used to pay for more expensive operations later.
+For our dynamic table:
+
+ * We charge 3 units for each insertion operation:
+    * 1 unit for the actual insertion
+    * 2 units as credit for future table doubling
+When the table needs to double:
+ * If we've inserted i items, doubling requires copying i items
+ * But we've accumulated 2i units of credit (2 units per insertion)
+ * This credit exactly covers the cost of copying during expansion
+
+For deletions (when implementing contraction):
+* We can similarly charge a constant amount that covers both the deletion and potential resizing
+
+This shows that with a constant amortized cost per operation (O(1)), we can cover all actual costs, even though individual operations might occasionally cost O(n) when resizing occurs.
+The accounting method confirms that both insertions and deletions have O(1) amortized time complexity in a dynamic table that doubles in size when full and halves in size when it's 1/4 full, maintaining a bounded load factor.
