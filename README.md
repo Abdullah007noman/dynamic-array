@@ -51,7 +51,7 @@ erase(da, 2);       // [10, 15, 30]
 freeDynamicArray(da);
 ```
 # Dynamic Table
-
+The implementation includes methods for inserting and deleting elements, as well as resizing the underlying array when necessary. It also includes a demonstration function that shows how the table size, number of items, and load factor change as elements are inserted and deleted.
 
 ## a) Using the Aggregate Method
 The aggregate method computes the amortized cost by dividing the total cost of a sequence of operations by the number of operations.
